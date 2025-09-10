@@ -6,6 +6,7 @@ int cmp = 0;
 int i = 0;
 int ran;
 char x[15]="x";
+char search[15];
 int ajoute_joueurs();
 int ajoute_one();
 int ajoute_plusieurs();
@@ -13,6 +14,11 @@ int affiche_contact();
 int tri_alphabe();
 int tri_age();
 int tri_poste();
+int modifie_joueurs();
+int modifie_poste();
+int modifie_age();
+int modofie_buts();
+int supprime_joueurs();
 typedef struct{
     char nom[100][100];
     char prenom[100][100];
@@ -40,6 +46,14 @@ int main(){
     case 2:
         system("cls");
         affiche_contact();
+        break;
+    case 3:
+        system("cls");
+        modifie_joueurs();
+        break;
+    case 4:
+        system("cls");
+        supprime_joueurs();
         break;
     default:
         printf("choice invalid !!");
@@ -78,7 +92,7 @@ int ajoute_one(){
     printf("age : ");
     scanf("%d",&jeu.age[i]);
     getchar();
-    printf("post : ");
+    printf("post  (gardien, defenseur, milieu, attaquant): ");
     fgets(jeu.post[i],sizeof(jeu.post),stdin);
     printf("buts : ");
     scanf("%d",&jeu.buts[i]);
@@ -110,7 +124,7 @@ int ajoute_plusieurs(){
     printf("age : ");
     scanf("%d",&jeu.age[u]);
     getchar();
-    printf("post : ");
+    printf("post (gardien, defenseur, milieu, attaquant): ");
     fgets(jeu.post[u],sizeof(jeu.post),stdin);
     printf("buts : ");
     scanf("%d",&jeu.buts[u]);
@@ -350,6 +364,78 @@ int tri_poste(){
         
         }
 }
-
+int modifie_joueurs(){
+    int choice4;
+    printf("1_Modifier le poste d’un joueur\n2_Modifier l’âge d’un joueur\n3_Modifier le nombre de buts marqués par un joueur\n>>> ");
+    scanf("%d",&choice4);
+    switch (choice4)
+    {
+    case 1:
+        system("cls");
+        modifie_poste();
+        break;
+    case 2:
+        system("cls");
+        modifie_age();
+        break;
+    case 3:
+        system("cls");
+        modofie_buts();
+    default:
+        break;
+    }
+}
+int modifie_poste(){
+    getchar();
+    reapit :
+    printf("nom de joueur : ");
+    fgets(search,15,stdin);
+    for(int s = 0;s<cmp;s++){
+        
+         if(strcmp(search,jeu.nom[s])==0){
+            printf("nouvelle poste : ");
+            fgets(jeu.post[s],15,stdin);
+         }else {
+            printf("try again !!\n");
+            goto reapit;
+         }
+    }
+}
+int modifie_age(){
+    getchar();
+    reapit_age :
+    printf("nom de joueur : ");
+    fgets(search,15,stdin);
+    for(int s = 0;s<cmp;s++){
+        
+         if(strcmp(search,jeu.nom[s])==0){
+            
+            printf("nouvelle age : ");
+            scanf("%d",&jeu.age[s]);
+         }else {
+            printf("try again !!\n");
+            goto reapit_age;
+         }
+    }
+}
+int modofie_buts(){
+    getchar();
+    reapit_buts :
+    printf("nom de joueur : ");
+    fgets(search,15,stdin);
+    for(int s = 0;s<cmp;s++){
+        
+         if(strcmp(search,jeu.nom[s])==0){
+            printf("nouvelle buts : ");
+            scanf("%d",&jeu.buts[s]);
+         }else {
+            printf("try again !!\n");
+            goto reapit_buts;
+         }
+    }
+}
+int supprime_joueurs(){
+    
+}
 
     
