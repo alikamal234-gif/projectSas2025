@@ -7,6 +7,8 @@ int i = 0;
 int ran;
 char x[15]="x";
 char search[15];
+int searche_id;
+int choix_supprime;
 int ajoute_joueurs();
 int ajoute_one();
 int ajoute_plusieurs();
@@ -19,6 +21,8 @@ int modifie_poste();
 int modifie_age();
 int modofie_buts();
 int supprime_joueurs();
+int supprime(int s);
+int recherche_joueurs();
 typedef struct{
     char nom[100][100];
     char prenom[100][100];
@@ -55,6 +59,9 @@ int main(){
         system("cls");
         supprime_joueurs();
         break;
+    case 5:
+        system("cls");
+        recherche_joueurs();
     default:
         printf("choice invalid !!");
         break;
@@ -435,7 +442,74 @@ int modofie_buts(){
     }
 }
 int supprime_joueurs(){
-    
+    reaplit4 :
+    printf("id : ");
+    scanf("%d",&searche_id);
+    for(int s = 0;s<cmp;s++){
+        
+         if(searche_id==jeu.id[s]){
+            printf("Est-ce que tu veux supprime (1/ yes)(2/ no): %s ",jeu.nom[s]);
+            scanf("%d",&choix_supprime);
+            if(choix_supprime == 1){
+                supprime(s);
+            }else if(choix_supprime == 2){
+                goto reaplit4;
+            }
+         }else {
+            printf("try again !!\n");
+            
+         }
+    }
 }
+int supprime(int s){
+    for(s;s<cmp;s++){
+        char swap[6];
+                
+                strcpy(jeu.post[s],jeu.post[s+1]);
+                cmp--;
+
+        
+        char swap2[6];
+                
+                strcpy(jeu.nom[s],jeu.nom[s+1]);
+                
+        
+        char swap3[6];
+                
+                strcpy(jeu.prenom[s],jeu.prenom[s+1]);
+                
+        
+        int swap4;
+                
+                jeu.statut[s]=jeu.statut[s+1];
+                
+        
+        int swap5;
+                
+                jeu.age[s]=jeu.age[s+1];
+                
+        
+        int swap6;
+                
+                jeu.buts[s]=jeu.buts[s+1];
+                
+
+        int swap7;
+                
+                jeu.id[s]=jeu.id[s+1];
+                
+        
+        int swap8;
+                
+                jeu.numeroMaillot[s]=jeu.numeroMaillot[s+1];
+                
+    }
+}
+// int recherche_joueurs(){
+//     int choice5;
+//     printf("1_Rechercher un joueur par Identifiant\n2_Rechercher un joueur par Nom.");
+//     scanf("%d",&choice5);
+
+// }
 
     
