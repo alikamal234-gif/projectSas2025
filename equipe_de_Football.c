@@ -12,6 +12,7 @@ int ajoute_plusieurs();
 int affiche_contact();
 int tri_alphabe();
 int tri_age();
+int tri_poste();
 typedef struct{
     char nom[100][100];
     char prenom[100][100];
@@ -128,7 +129,7 @@ int ajoute_plusieurs(){
 }
 int affiche_contact(){
     int choice3;
-    printf("1_affiche tri par alphabe\n2_affiche tri pare age\n>>> ");
+    printf("1_affiche tri par alphabe\n2_affiche tri pare age\n3_affiche tri par poste\n>>> ");
     scanf("%d",&choice3);
     switch(choice3){
         case 1:
@@ -139,6 +140,9 @@ int affiche_contact(){
         system("cls");
              tri_age();
             break; 
+        case 3:
+            tri_poste();
+            break;
         default:
             printf("choice invalid !!");  
             break;
@@ -199,7 +203,7 @@ int tri_alphabe(){
         printf("//=> nom : %s",jeu.nom[f]);
         printf("//=> prenom :%s",jeu.prenom[f]);
         printf("//=> age : %d \n",jeu.age[f]);
-        printf("//=> post : %s",jeu.post[f]);
+        printf("//=> post (gardien, defenseur, milieu, attaquant) : %s",jeu.post[f]);
         printf("//=> buts : %d \n",jeu.buts[f]);
         
         if(jeu.statut[f] == 1){
@@ -263,10 +267,76 @@ int tri_age(){
     }
     for(int f =0;f<cmp;f++){
         printf("============ les joueurs %d ============\n",f+1);
-        printf("//=> nom : %s \n",jeu.nom[f]);
-        printf("//=> prenom :%s \n",jeu.prenom[f]);
+        printf("//=> nom : %s",jeu.nom[f]);
+        printf("//=> prenom :%s ",jeu.prenom[f]);
         printf("//=> age : %d \n",jeu.age[f]);
-        printf("//=> post : %s \n",jeu.post[f]);
+        printf("//=> post : %s",jeu.post[f]);
+        printf("//=> buts : %d \n",jeu.buts[f]);
+        
+        if(jeu.statut[f] == 1){
+            strcpy(x,"titulare");
+        }else if(jeu.statut[f] == 2){
+            strcpy(x,"remplacant");
+        }
+        printf("//=> status : %s \n",x);
+        printf("//=> numeroMaillot : %d \n",jeu.numeroMaillot[f]);
+        printf("//=> ID : %d \n",jeu.id[f]);
+        
+        }
+}
+int tri_poste(){
+    for(int d =0;d<6;d++){
+        for(int j =i+1;j<6;j++){
+            if(jeu.post[i][0] == jeu.post[j][0]){
+                char swap[6];
+                strcpy(swap,jeu.post[i+1]);
+                strcpy(jeu.post[i+1],jeu.post[j]);
+                strcpy(jeu.post[j],swap);
+
+        
+        char swap2[6];
+                strcpy(swap2,jeu.nom[i+1]);
+                strcpy(jeu.nom[i+1],jeu.nom[j]);
+                strcpy(jeu.nom[j],swap2);
+        
+        char swap3[6];
+                strcpy(swap3,jeu.prenom[i+1]);
+                strcpy(jeu.prenom[i+1],jeu.prenom[j]);
+                strcpy(jeu.prenom[j],swap3);
+        
+        int swap4;
+                swap4=jeu.statut[i+1];
+                jeu.statut[i+1]=jeu.statut[j];
+                jeu.statut[j]=swap4;
+        
+        int swap5;
+                swap5=jeu.age[i+1];
+                jeu.age[i+1]=jeu.age[j];
+                jeu.age[j]=swap5;
+        
+        int swap6;
+                swap6=jeu.buts[i+1];
+                jeu.buts[i+1]=jeu.buts[j];
+                jeu.buts[j]=swap6;
+
+        int swap7;
+                swap7=jeu.id[i+1];
+                jeu.id[i+1]=jeu.id[j];
+                jeu.id[j]=swap7;
+        
+        int swap8;
+                swap8=jeu.numeroMaillot[i+1];
+                jeu.numeroMaillot[i+1]=jeu.numeroMaillot[j];
+                jeu.numeroMaillot[j]=swap8;
+            }
+        }
+    }
+        for(int f =0;f<cmp;f++){
+        printf("============ les joueurs %d ============\n",f+1);
+        printf("//=> nom : %s",jeu.nom[f]);
+        printf("//=> prenom :%s",jeu.prenom[f]);
+        printf("//=> age : %d \n",jeu.age[f]);
+        printf("//=> post : %s",jeu.post[f]);
         printf("//=> buts : %d \n",jeu.buts[f]);
         
         if(jeu.statut[f] == 1){
