@@ -8,6 +8,7 @@ int ran;
 char x[15]="x";
 char search[15];
 int searche_id;
+char searche_nom[15];
 int choix_supprime;
 int ajoute_joueurs();
 int ajoute_one();
@@ -23,6 +24,9 @@ int modofie_buts();
 int supprime_joueurs();
 int supprime(int s);
 int recherche_joueurs();
+int recherche_id();
+int recherche_nom();
+int statistique();
 typedef struct{
     char nom[100][100];
     char prenom[100][100];
@@ -62,6 +66,9 @@ int main(){
     case 5:
         system("cls");
         recherche_joueurs();
+    case 6:
+        system("cls");
+        statistique();
     default:
         printf("choice invalid !!");
         break;
@@ -109,10 +116,7 @@ int ajoute_one(){
     scanf("%d",&jeu.statut[i]);
     srand(time(NULL));
     ran = rand()%9999 + 10000;
-    
-    
         jeu.id[i]=ran;
-    
 
     i++;
     cmp++;
@@ -505,11 +509,85 @@ int supprime(int s){
                 
     }
 }
-// int recherche_joueurs(){
-//     int choice5;
-//     printf("1_Rechercher un joueur par Identifiant\n2_Rechercher un joueur par Nom.");
-//     scanf("%d",&choice5);
+int recherche_joueurs(){
+    int choice5;
+    printf("1_Rechercher un joueur par Identifiant\n2_Rechercher un joueur par Nom.\n>>> ");
+    scanf("%d",&choice5);
+    switch (choice5)
+    {
+    case 1:
+    system("cls");
+        recherche_id();
+        break;
+    case 2:
+        recherche_nom();
+    default:
+        break;
+    }
 
-// }
+}
+int recherche_id(){
+    reaplit5 :
+    printf("id : ");
+    scanf("%d",&searche_id);
+    for(int s = 0;s<cmp;s++){
+        
+         if(searche_id==jeu.id[s]){
+            printf("============ les joueurs %d ============\n",jeu.nom[s]);
+        printf("//=> nom : %s",jeu.nom[s]);
+        printf("//=> prenom :%s",jeu.prenom[s]);
+        printf("//=> age : %d \n",jeu.age[s]);
+        printf("//=> post (gardien, defenseur, milieu, attaquant) : %s",jeu.post[s]);
+        printf("//=> buts : %d \n",jeu.buts[s]);
+        
+        if(jeu.statut[s] == 1){
+            strcpy(x,"titulare");
+        }else if(jeu.statut[s] == 2){
+            strcpy(x,"remplacant");
+        }
+        printf("//=> status : %s\n",x);
+        printf("//=> numeroMaillot : %d \n",jeu.numeroMaillot[s]);
+        printf("//=> ID : %d \n",jeu.id[s]);
+        break;
+    
+         }else {
+            printf("try again !!\n");
+            goto reaplit5;
+         }
+    
+}
+}
+int recherche_nom(){
+    getchar();
+    reaplit6 :
+    printf("nom : ");
+    fgets(searche_nom,15,stdin);
+    for(int s = 0;s<cmp;s++){
+        
+         if(strcmp(searche_nom,jeu.nom[s])==0){
+            printf("============ les joueurs %d ============\n",jeu.nom[s]);
+        printf("//=> nom : %s",jeu.nom[s]);
+        printf("//=> prenom :%s",jeu.prenom[s]);
+        printf("//=> age : %d \n",jeu.age[s]);
+        printf("//=> post (gardien, defenseur, milieu, attaquant) : %s",jeu.post[s]);
+        printf("//=> buts : %d \n",jeu.buts[s]);
+        
+        if(jeu.statut[s] == 1){
+            strcpy(x,"titulare");
+        }else if(jeu.statut[s] == 2){
+            strcpy(x,"remplacant");
+        }
+        printf("//=> status : %s\n",x);
+        printf("//=> numeroMaillot : %d \n",jeu.numeroMaillot[s]);
+        printf("//=> ID : %d \n",jeu.id[s]);
+        break;
+    
+         }else {
+            printf("try again !!\n");
+            goto reaplit6;
+         }
+    
+}
+}
 
     
