@@ -38,6 +38,7 @@ typedef struct
     int statut;
     int id;
     int numeroMaillot;
+    char *dateInscription;
 } joueurs;
 joueurs jeu[100];
 
@@ -157,10 +158,12 @@ reaplit_post:
     printf("statut (1/ titulaire)(2/ remplacant) : ");
     scanf("%d", &jeu[i].statut);
     system("pause");
+     time_t now = time(NULL);
+    jeu[i].dateInscription = ctime(&now);
     srand(time(NULL));
     ran = rand() % 9999 + 10000;
     jeu[i].id = ran;
-
+   
     i++;
     cmp++;
 }
@@ -214,7 +217,8 @@ int ajoute_plusieurs()
         system("cls");
         srand(time(NULL));
         ran = rand() % 9999 + 10000;
-
+        time_t now = time(NULL);
+        jeu[i].dateInscription = ctime(&now);
         jeu[i].id = ran;
         i++;
         cmp++;
@@ -319,6 +323,7 @@ int tri_alphabe()
         printf("//=> status : %s\n", change);
         printf("//=> numeroMaillot : %d \n", jeu[f].numeroMaillot);
         printf("//=> ID : %d \n", jeu[f].id);
+        printf("//=> dateInscription : %s \n",jeu[f].dateInscription);
     }
 }
 int tri_age()
@@ -394,6 +399,7 @@ int tri_age()
         printf("//=> status : %s \n", change);
         printf("//=> numeroMaillot : %d \n", jeu[f].numeroMaillot);
         printf("//=> ID : %d \n", jeu[f].id);
+        printf("//=> dateInscription : %s \n",jeu[f].dateInscription);
     }
 }
 int tri_poste()
@@ -466,6 +472,7 @@ int tri_poste()
         printf("//=> status : %s \n", change);
         printf("//=> numeroMaillot : %d \n", jeu[f].numeroMaillot);
         printf("//=> ID : %d \n", jeu[f].id);
+        printf("//=> dateInscription : %s \n",jeu[f].dateInscription);
         printf("============ post ============\n", jeu[f].post);
     }
 }
@@ -691,6 +698,7 @@ int recherche_id()
             printf("//=> status : %s\n", change);
             printf("//=> numeroMaillot : %d \n", jeu[s].numeroMaillot);
             printf("//=> ID : %d \n", jeu[s].id);
+            printf("//=> dateInscription : %s \n",jeu[s].dateInscription);
             break;
         }
     }
@@ -724,6 +732,7 @@ int recherche_nom()
             printf("//=> status : %s\n", recherche_nom);
             printf("//=> numeroMaillot : %d \n", jeu[s].numeroMaillot);
             printf("//=> ID : %d \n", jeu[s].id);
+            printf("//=> dateInscription : %s \n",jeu[s].dateInscription);
             break;
         }
     }
@@ -848,6 +857,7 @@ int data_jeu()
     int statut[100] = {1, 1, 1, 1, 1};
     int id[100] = {33333, 11111, 22222, 55555, 44444};
     int numeroMaillot[100] = {10, 7, 7, 10, 2};
+    char *dateInscription[20] = {"Thurse June 24, 1987","Mond February 5, 1985",  "Wednes December 20, 1998","Satu September 9, 1985","Fri November 4, 1998"};
     for (int c = 0; c < 5; c++)
     {
         strcpy(jeu[c].nom, nom[c]);
@@ -858,5 +868,6 @@ int data_jeu()
         jeu[c].statut = statut[c];
         jeu[c].id = id[c];
         jeu[c].numeroMaillot = numeroMaillot[c];
+        jeu[c].dateInscription = dateInscription[c];
     }
 }
